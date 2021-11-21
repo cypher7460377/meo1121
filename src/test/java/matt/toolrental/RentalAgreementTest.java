@@ -111,11 +111,11 @@ public class RentalAgreementTest {
 	}
 
 	@Test
-	public void checkRentalAgreementForRigidJackhammerNoWeekendNoHolidayTest() {
+	public void checkRentalAgreementForRidgidJackhammerNoWeekendNoHolidayTest() {
 		RentalAgreement rentalAgreement = new RentalAgreement("JAKR", "1/6/20", 3, 0.1);
 		assertEquals("JAKR", rentalAgreement.getToolCode());
 		assertEquals("Jackhammer", rentalAgreement.getToolType());
-		assertEquals("Rigid", rentalAgreement.getToolBrand());
+		assertEquals("Ridgid", rentalAgreement.getToolBrand());
 		assertEquals(3, rentalAgreement.getRentalDays());
 		assertEquals(LocalDate.of(2020, 1, 6), rentalAgreement.getCheckoutDate());
 		assertEquals(LocalDate.of(2020, 1, 9), rentalAgreement.getDueDate());
@@ -128,11 +128,11 @@ public class RentalAgreementTest {
 	}
 
 	@Test
-	public void checkRentalAgreementForRigidJackhammerWeekendHolidayDiscountTest() {
+	public void checkRentalAgreementForRidgidJackhammerWeekendHolidayDiscountTest() {
 		RentalAgreement rentalAgreement = new RentalAgreement("JAKR", "7/2/20", 4, 0.5);
 		assertEquals("JAKR", rentalAgreement.getToolCode());
 		assertEquals("Jackhammer", rentalAgreement.getToolType());
-		assertEquals("Rigid", rentalAgreement.getToolBrand());
+		assertEquals("Ridgid", rentalAgreement.getToolBrand());
 		assertEquals(4, rentalAgreement.getRentalDays());
 		assertEquals(LocalDate.of(2020, 7, 2), rentalAgreement.getCheckoutDate());
 		assertEquals(LocalDate.of(2020, 7, 6), rentalAgreement.getDueDate());

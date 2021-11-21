@@ -142,19 +142,19 @@ public class AppTest {
     }
     /**
      * Test 5
-     * Test Rigid Jackhammer rental over Independence Day holiday
+     * Test Ridgid Jackhammer rental over Independence Day holiday
      * @throws Exception
      */
     @Test
     @ExpectSystemExitWithStatus(0)
-    public void checkRigidJackhammerRentalTest() throws Exception {
+    public void checkRidgidJackhammerRentalTest() throws Exception {
         String[] args = new String[]{"-d", "7/2/15", "-p", "0", "-r", "9", "-t", "JAKR"};
         App.main(args);
     
         String expectedChainsawOutput = 
 " Tool code: JAKR" + System.lineSeparator() +
 " Tool type: Jackhammer" + System.lineSeparator() +
-" Tool brand: Rigid" + System.lineSeparator() +
+" Tool brand: Ridgid" + System.lineSeparator() +
 " Rental days: 9" + System.lineSeparator() +
 " Check out date: 7/2/15" + System.lineSeparator() +
 " Due date: 7/11/15" + System.lineSeparator() +
@@ -169,19 +169,19 @@ public class AppTest {
 
     /**
      * Test 5
-     * Test Rigid Jackhammer rental over Independence Day holiday with a discount
+     * Test Ridgid Jackhammer rental over Independence Day holiday with a discount
      * @throws Exception
      */
     @Test
     @ExpectSystemExitWithStatus(0)
-    public void checkRigidJackhammerDiscountRentalTest() throws Exception {
+    public void checkRidgidJackhammerDiscountRentalTest() throws Exception {
         String[] args = new String[]{"-d", "7/2/15", "-p", "0", "-r", "9", "-t", "JAKR"};
         App.main(args);
     
         String expectedChainsawOutput = 
 " Tool code: JAKR" + System.lineSeparator() +
 " Tool type: Jackhammer" + System.lineSeparator() +
-" Tool brand: Rigid" + System.lineSeparator() +
+" Tool brand: Ridgid" + System.lineSeparator() +
 " Rental days: 9" + System.lineSeparator() +
 " Check out date: 7/2/15" + System.lineSeparator() +
 " Due date: 7/11/15" + System.lineSeparator() +

@@ -1,16 +1,18 @@
 package matt.toolrental;
 
 public class RentalTool {
-    String toolCode;
-    String toolBrand; 
-    String toolType; 
-    boolean isWeekendCharge;
-    boolean isHolidayCharge;
+    private String toolCode;
+    private String toolBrand; 
+    private String toolType;
+    private double dailyCharge;
+    private boolean isWeekendCharge;
+    private boolean isHolidayCharge;
 
-    public RentalTool(String toolCode, String toolBrand, String toolType, boolean isWeekendCharge, boolean isHolidayCharge) {
+    public RentalTool(String toolCode, String toolBrand, String toolType, double dailyCharge, boolean isWeekendCharge, boolean isHolidayCharge) {
         this.toolCode = toolCode;
         this.toolBrand = toolBrand;
         this.toolType = toolType;
+        this.dailyCharge = dailyCharge;
         this.isWeekendCharge = isWeekendCharge;
         this.isHolidayCharge = isHolidayCharge;
     }
@@ -26,6 +28,10 @@ public class RentalTool {
 
     public String getToolType() {
         return this.toolType;
+    }
+
+    public double getDailyCharge() {
+        return this.dailyCharge;
     }
 
     public boolean isWeekendCharge() {

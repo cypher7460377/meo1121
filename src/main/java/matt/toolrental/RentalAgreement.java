@@ -17,53 +17,28 @@ public class RentalAgreement {
     private int rentalDays;
     private double discountPercent;
     private LocalDate dueDate;
-    private double dailyCharge;
     private long chargeDays;
     private double preDiscountCharge;
     private double discountAmount;
     private double finalCharge;
     private RentalTool rentalTool;
-    private static Map<String, String> typeMap = new HashMap<>();
-    private static Map<String, String> brandMap = new HashMap<>();
-    private static Map<String, Double> priceMap = new HashMap<>();
-    private static Map<String, Boolean> weekendChargeMap = new HashMap<>();
-    private static Map<String, Boolean> holidayChargeMap = new HashMap<>();
+    private static Map<String, RentalTool> inventory = new HashMap<>();
     static {
-        priceMap.put("LADW", 1.99);
-        typeMap.put("LADW", "Ladder");
-        brandMap.put("LADW", "Werner");
-        weekendChargeMap.put("LADW", true);
-        holidayChargeMap.put("LADW", false);
-
-        priceMap.put("CHNS", 1.49);
-        typeMap.put("CHNS", "Chainsaw");
-        brandMap.put("CHNS", "Stihl");
-        weekendChargeMap.put("CHNS", false);
-        holidayChargeMap.put("CHNS", true);
-        
-        priceMap.put("JAKD", 2.99);
-        typeMap.put("JAKD", "Jackhammer");
-        brandMap.put("JAKD", "DeWalt");
-        weekendChargeMap.put("JAKD", false);
-        holidayChargeMap.put("JAKD", false);
-        
-        priceMap.put("JAKR", 2.99);
-        typeMap.put("JAKR", "Jackhammer");
-        brandMap.put("JAKR", "Rigid");
-        weekendChargeMap.put("JAKR", false);
-        holidayChargeMap.put("JAKR", false);
+        inventory.put("LADW", new RentalTool("LADW", "Werner", "Ladder", 1.99, true, false));
+        inventory.put("CHNS", new RentalTool("CHNS", "Stihl", "Chainsaw", 1.49, false, true));
+        inventory.put("JAKD", new RentalTool("JAKD", "DeWalt", "Jackhammer", 2.99, false, false));
+        inventory.put("JAKR", new RentalTool("JAKR", "Ridgid", "Jackhammer", 2.99, false, false));
     }
 
     public RentalAgreement(String toolCode, String checkOutDate, int rentalDays, double discountPercent) {
-        this.rentalTool = new RentalTool(toolCode, brandMap.get(toolCode), typeMap.get(toolCode), weekendChargeMap.get(toolCode), holidayChargeMap.get(toolCode));
+        this.rentalTool = inventory.get(toolCode);
         this.checkOutDate = LocalDate.parse(checkOutDate, DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
         this.rentalDays = rentalDays;
         this.discountPercent = discountPercent;
 
         this.dueDate = this.checkOutDate.plusDays(this.rentalDays);
-        this.dailyCharge = priceMap.get(toolCode);
         this.chargeDays = calculateChargeDays(this.checkOutDate.plusDays(1), this.dueDate.plusDays(1), this.rentalTool, this.rentalDays);
-        this.preDiscountCharge = this.chargeDays * this.dailyCharge;
+        this.preDiscountCharge = this.chargeDays * this.rentalTool.getDailyCharge();
         this.discountAmount = this.discountPercent * this.preDiscountCharge;
         this.finalCharge = this.preDiscountCharge - this.discountAmount;
     }
@@ -172,7 +147,7 @@ public class RentalAgreement {
     }
 
     public double getDailyCharge() {
-        return this.dailyCharge;
+        return this.rentalTool.getDailyCharge();
     }
 
     public long getChargeDays() {
